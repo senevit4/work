@@ -39,4 +39,4 @@ local.properties
 .texlipse
 
 # Maven target stuff
-target/*/
+target/**/
