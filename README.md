@@ -1,5 +1,5 @@
 # work/FTP_client
-# Commands:
+### Commands:
 exit- terminate program
 up- go up in catalog structure
 enter file name to download file
