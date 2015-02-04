@@ -1,5 +1,5 @@
 # work
-FTP client
+#FTP client
 Executable jar inside target folder 
 Commands:
 exit- terminate program
