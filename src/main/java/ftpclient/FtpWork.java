@@ -36,7 +36,7 @@ public class FtpWork {
 		processUserInput(in);
 		in.close();
 		System.out.println("Work ended.");
-		ftpClient.setAutoNoopTimeout(0);
+		disconnectFromFtp();
 	}
 
 	public static void connectToFtp() {
@@ -56,6 +56,21 @@ public class FtpWork {
 		}
 		
 		ftpClient.setAutoNoopTimeout(NOOPTIME);
+	}
+	
+	public static void disconnectFromFtp() {
+		try {
+			ftpClient.disconnect(true);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FTPIllegalReplyException e) {
+			e.printStackTrace();
+		} catch (FTPException e) {
+			e.printStackTrace();
+		}
+		ftpClient.setAutoNoopTimeout(0);
 	}
 
 	public static void processUserInput(Scanner in) {
