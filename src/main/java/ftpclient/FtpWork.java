@@ -1,19 +1,10 @@
 package ftpclient;
 
+import it.sauronsoftware.ftp4j.FTPClient;
+import it.sauronsoftware.ftp4j.FTPFile;
 
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import it.sauronsoftware.ftp4j.FTPAbortedException;
-import it.sauronsoftware.ftp4j.FTPClient;
-import it.sauronsoftware.ftp4j.FTPDataTransferException;
-import it.sauronsoftware.ftp4j.FTPException;
-import it.sauronsoftware.ftp4j.FTPFile;
-import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
-import it.sauronsoftware.ftp4j.FTPListParseException;
 
 public class FtpWork {
 
@@ -41,40 +32,28 @@ public class FtpWork {
 
 	public static void connectToFtp() {
 		try {
-			
+
 			ftpClient.connect(FTP_ADDRESS);
 			ftpClient.login(LOGIN, PASSWORD);
-			
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FTPIllegalReplyException e) {
-			e.printStackTrace();
-		} catch (FTPException e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ftpClient.setAutoNoopTimeout(NOOPTIME);
 	}
-	
+
 	public static void disconnectFromFtp() {
 		try {
 			ftpClient.disconnect(true);
-		} catch (IllegalStateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FTPIllegalReplyException e) {
-			e.printStackTrace();
-		} catch (FTPException e) {
-			e.printStackTrace();
-		}
+		} 
 		ftpClient.setAutoNoopTimeout(0);
 	}
 
 	public static void processUserInput(Scanner in) {
-		
+
 		String input;
 
 		while (true) {
@@ -85,13 +64,7 @@ public class FtpWork {
 			case UPCOMMAND:
 				try {
 					ftpClient.changeDirectoryUp();
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (FTPIllegalReplyException e) {
-					e.printStackTrace();
-				} catch (FTPException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				ftpFolderList();
@@ -106,19 +79,7 @@ public class FtpWork {
 	public static void ftpFolderList() {
 		try {
 			list = ftpClient.list();
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FTPIllegalReplyException e) {
-			e.printStackTrace();
-		} catch (FTPException e) {
-			e.printStackTrace();
-		} catch (FTPDataTransferException e) {
-			e.printStackTrace();
-		} catch (FTPAbortedException e) {
-			e.printStackTrace();
-		} catch (FTPListParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		for (int i = 0; i < list.length; i++) {
@@ -136,13 +97,7 @@ public class FtpWork {
 			try {
 				ftpClient.changeDirectory(input);
 				ftpFolderList();
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (FTPIllegalReplyException e) {
-				e.printStackTrace();
-			} catch (FTPException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -161,19 +116,7 @@ public class FtpWork {
 		System.out.println("Downloading file: " + filename);
 		try {
 			ftpClient.download(filename, new java.io.File(filename));
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FTPIllegalReplyException e) {
-			e.printStackTrace();
-		} catch (FTPException e) {
-			e.printStackTrace();
-		} catch (FTPDataTransferException e) {
-			e.printStackTrace();
-		} catch (FTPAbortedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("Download finished.");
