@@ -1,28 +1,28 @@
 package ftpclient;
 
 public class FtpUnit {
-	private String UnitName;
-	private String UnitType;
+	private String unitName;
+	private String unitType;
 
 	public String getUnitName() {
-		return UnitName;
+		return unitName;
 	}
 
 	public void setUnitName(String unitName) {
-		UnitName = unitName;
+		this.unitName = unitName;
 	}
 
 	public String getUnitType() {
-		return UnitType;
+		return unitType;
 	}
 
 	public void setUnitType(String unitType) {
-		UnitType = unitType;
+		this.unitType = unitType;
 	}
 
 	@Override
 	public String toString() {
-		return UnitType + ": " + UnitName;
+		return unitType + ": " + unitName;
 	}
 
 	public FtpUnit() {
@@ -30,13 +30,13 @@ public class FtpUnit {
 	}
 
 	public FtpUnit(String unitName, String unitType) {
-		UnitName = unitName;
-		UnitType = unitType;
+		this.unitName = unitName;
+		this.unitType = unitType;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		FtpUnit x = (FtpUnit) obj;
-		return ((x.UnitName.equals(UnitName)) && (x.UnitType.equals(UnitType)));
+		return ((x.unitName.equals(unitName)) && (x.unitType.equals(unitType)));
 	}
 }
